@@ -1,13 +1,12 @@
 import input from './input';
 
-let maxCalories = 0;
+let topElves = 3;
 
+let calorieCounts: number[] = [];
 let currentCalories = 0;
 for (const inputLine of input.split('\n')) {
     if (inputLine === '') {
-        if (currentCalories > maxCalories) {
-            maxCalories = currentCalories;
-        }
+        calorieCounts.push(currentCalories)
         currentCalories = 0;
         continue;
     }
@@ -16,4 +15,4 @@ for (const inputLine of input.split('\n')) {
     currentCalories += parsedCalories
 }
 
-console.log(maxCalories)
+console.log(calorieCounts.sort((a, b) => a-b).reverse().splice(0, topElves).reduce((prev, curr) => prev + curr))
